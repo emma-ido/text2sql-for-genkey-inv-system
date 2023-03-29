@@ -4,7 +4,6 @@ from enum import Enum
 from fastapi import FastAPI
 from pydantic import BaseModel
 import openai
-import config
 
 
 openai.api_key = os.getenv("API_KEY")
