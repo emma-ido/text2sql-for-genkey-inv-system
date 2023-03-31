@@ -22,7 +22,7 @@ def index() -> str:
 
 @app.post("/text2sql/")
 def generate_sql(user_request: UserRequest):
-    prompt_text = "### Postgres SQL tables, with their properties:\n#\n# asset(id, cost double, date_created, defects, model, name, serial_number, branch_id, brand_id, category_id, department_id, assigned_to, office_id, status, sub_category_id)\n# branch(id, branch_name)\n# brand (id, brand_name)\n# category(id, category_name)\n# department(id, department_name)\n# office(id, office_name, branch_id)\n# status(id, status)\n# sub_category(id, sub_category_name, category_id)\n#\n### {}. Give me the query only."
+    prompt_text = "### Postgres SQL tables, with their properties:\n#\n# asset(id, cost, date_created, defects, model, name, serial_number, brand, category, department, assigned_to, location, status, sub_category)\n# branch(branch_name)\n# brand (brand_name)\n# category(category_name)\n# department(department_name)\n# status(status)\n# sub_category(sub_category_name)\n#\n### {}. Give me the query only."
     
     if(user_request.password != api_password):
         return "Incorrect Password!"
