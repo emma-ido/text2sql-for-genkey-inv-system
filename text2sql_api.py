@@ -26,6 +26,7 @@ def generate_sql(user_request: UserRequest):
     
     if(user_request.password != api_password):
         return "Incorrect Password!"
+        
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt_text.format(user_request.request),
@@ -36,5 +37,12 @@ def generate_sql(user_request: UserRequest):
         presence_penalty=0.0,
         stop=["#", ";"] 
     )
-    print(prompt_text)
-    return response.choices[0].text.strip()
+    
+    # print(prompt_text)
+    output_query = response.choices[0].text.strip();
+    
+    if(output_query[0] == '"' and output_query[-1] == '"'):
+        output_query = output_query[1:]
+        output_query = output_query[:-1]
+        
+    return output_query;
